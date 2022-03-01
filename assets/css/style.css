@@ -219,86 +219,61 @@ hr{
 /*--------------------------------------------------------------
 # Hero Section
 --------------------------------------------------------------*/
-#background{
-  width: 100%;
-  height: 100vh;
-  background: url("../img/hero-bg.jpg") top center;
-  background-size: cover;
-}
-#hero {
-  width: 100%;
-  height: 100vh;
+.hero {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: calc(100vw - 300px);
+  margin-left: auto;
+  padding-top: unset;
+  padding-bottom: unset;
   background: url("../img/hero-bg.jpg") top center;
   background-size: cover;
 }
 
-#hero:before {
+#parallax {
+  height: 100vh;
+}
+
+.hero:before {
   content: "";
-  /*background: rgba(5, 13, 24, 0.6);*/
   backdrop-filter: blur(50px);
   position: absolute;
   bottom: 0;
   top: 0;
   left: 0;
   right: 0;
+}
+
+#intro-container {
+  height: 86vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   z-index: 1;
 }
 
-.intro{
-
-  /*position: absolute;
-  z-index: 2;
-  min-width: 300px;
-  /*text-align: center; justify-content: all;*/
-  /*padding-right: 100px;
-  padding-left: 400px;
-  padding-top: 100px;
-  padding-bottom: 100px;*/
-  /*width: 100%
-  background-color: rgba(255,255,255,0.2);
-  backdrop-filter: blur(50px);*/
-
-
+#intro {
   background-color: rgba(255,255,255,0.2);
   backdrop-filter: blur(50px);
   color: white;
-  
   border: 0px solid #f1f1f1;
   border-radius: 7px;
-  position: absolute;
-  top: 40%;
-  left: 55%;
-  transform: translate(-50%, -50%);
-  z-index: 2;
-  width: 50%;
-  padding: 20px;
+  width: 50rem;
+  padding: 30px;
   text-align: justify;
-
-  padding-left: 50px;
-  padding-right:50px;
-  padding-top: 50px;
-  padding-bottom: 50px;  
-
 }
 
-#hero .hero-container {
-  /*position: relative;*/
-  position: absolute;
-  left: 0;
-  bottom: 0;
+.hero .hero-container {
   width: 100%;
-  z-index: 2;
   min-width: 300px;
-
-
-
-text-align: center;
-background-color: rgba(255,255,255,0.2);
-backdrop-filter: blur(50px);
-
+  text-align: center;
+  background-color: rgba(255,255,255,0.2);
+  backdrop-filter: blur(50px);
+  z-index: 1;
 }
 
-#hero h1 {
+.hero h1 {
   margin: 0 0 10px 0;
   font-size: 64px;
   font-weight: 700;
@@ -307,36 +282,39 @@ backdrop-filter: blur(50px);
   padding-top: 50px;
 }
 
-#hero p {
+.hero p {
   color: black;
-  /*margin-bottom: 50px;*/
-  font-size: 26px;
+  font-size: 23px;
   font-family: "Poppins", sans-serif;
-  /*padding-bottom: 10px*/
-
 }
 
-#hero p span {
+.hero p span {
   color: black;
   padding-bottom: 4px;
   letter-spacing: 1px;
-  /*border-bottom: 3px solid #149ddd;*/
-  
-backdrop-filter: blur(50px);
+  backdrop-filter: blur(50px);
 }
 
 @media (min-width: 1024px) {
-  #hero {
+  .hero {
     background-attachment: fixed;
   }
 }
 
+@media (max-width: 1950px) {
+  .hero h1 {
+    font-size: 47px;
+    line-height: 40px;
+    padding-top: 30px;
+  }
+}
+
 @media (max-width: 768px) {
-  #hero h1 {
+  .hero h1 {
     font-size: 28px;
     line-height: 36px;
   }
-  #hero h2 {
+  .hero h2 {
     font-size: 18px;
     line-height: 24px;
     margin-bottom: 30px;
@@ -386,6 +364,11 @@ section {
 /*--------------------------------------------------------------
 # About
 --------------------------------------------------------------*/
+
+#about-text {
+  display: none;
+}
+
 .about .content h3 {
   font-weight: 700;
   font-size: 26px;
@@ -1136,9 +1119,44 @@ section {
 }
 
 @media (max-width: 1199px) {
+
+  #about-text {
+    display: block;
+  }
+
   #footer {
     position: static;
     width: auto;
     padding-right: 20px 15px;
+  }
+
+  .hero {
+    width: 100vw;
+  }
+
+  .hero::before {
+    content: none;
+  }
+
+  .hero:first-of-type {
+    animation: header-animation 2s;
+    animation-timing-function: linear;
+    animation-iteration-count: 1;
+  }
+
+  #intro-container {
+    display: none;
+  }
+}
+
+@keyframes header-animation {
+  from {
+    opacity: 0;
+    height: 0;
+  }
+  
+  to {
+    opacity: 1;
+    height: 126.5px;
   }
 }
